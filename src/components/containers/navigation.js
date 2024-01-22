@@ -4,6 +4,8 @@ import { Menu, Flex, Col, Row, Typography } from "antd";
 import { items } from "../../helpers/nav_buttons.js";
 const { Text, Link } = Typography;
 
+import { items } from "../../helpers/nav_buttons.js";
+
 export default function Navigation() {
   const [current, setCurrent] = React.useState("home"); //for now
 
