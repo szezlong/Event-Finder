@@ -1,12 +1,11 @@
 import React from "react";
 import { Menu, Flex, Col, Row, Typography } from "antd";
 
-//import './index.css';
 import { items } from "../../helpers/nav_buttons.js";
 const { Text, Link } = Typography;
 
 export default function Navigation() {
-  const [current, setCurrent] = React.useState("mail");
+  const [current, setCurrent] = React.useState("home"); //for now
 
   const onClick = (e) => {
     console.log("click ", e);
@@ -32,9 +31,17 @@ export default function Navigation() {
           onClick={onClick}
           selectedKeys={[current]}
           mode="horizontal"
-          items={items}
-          style={{ display: "flex", justifyContent: "flex-start" }}
-        />
+          style={{
+            marginLeft: "5vw",
+            borderBottom: "1px solid rgba(255, 0, 0, 0)",
+          }}
+        >
+          {items.map((item) => (
+            <Menu.Item key={item.key} style={{ marginRight: "11vw" }}>
+              {item.label}
+            </Menu.Item>
+          ))}
+        </Menu>
       </Col>
     </Row>
   );

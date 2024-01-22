@@ -5,12 +5,7 @@ import { Button, Menu, Typography } from "antd";
 export const items = [
   {
     label: (
-      <a
-        href="@"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ marginLeft: "5vw", marginRight: "10vw" }} //zamiast style tutaj, to dodać to w komponent (flex) w który wsadzisz label
-      >
+      <a href="@" target="_blank" rel="noopener noreferrer">
         Home
       </a>
     ),
@@ -18,12 +13,7 @@ export const items = [
   },
   {
     label: (
-      <a
-        href="@"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ marginRight: "10vw" }}
-      >
+      <a href="@" target="_blank" rel="noopener noreferrer">
         About
       </a>
     ),
@@ -31,12 +21,7 @@ export const items = [
   },
   {
     label: (
-      <a
-        href="@"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ marginRight: "10vw" }}
-      >
+      <a href="@" target="_blank" rel="noopener noreferrer">
         Destination
       </a>
     ),
@@ -44,12 +29,7 @@ export const items = [
   },
   {
     label: (
-      <a
-        href="@"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ marginRight: "12vw" }}
-      >
+      <a href="@" target="_blank" rel="noopener noreferrer">
         Contact
       </a>
     ),
