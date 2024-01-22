@@ -1,11 +1,11 @@
 import React from "react";
 import { Typography } from "antd";
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 const img_src =
   "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
 
-const TextWithBackgroundImage = () => {
+const Banner = () => {
   const backgroundImageStyle = {
     backgroundImage: `url(${img_src})`,
     backgroundSize: "cover",
@@ -30,10 +30,29 @@ const TextWithBackgroundImage = () => {
     <div style={backgroundImageStyle}>
       <div style={overlayStyle}></div>
       <div style={{ position: "relative", zIndex: 1 }}>
-        <h2 style={{ color: "black" }}>
+        <Text
+          style={{
+            fontFamily: "Pattaya, sans-serif",
+            color: "#ff0000",
+            textShadow:
+              "2px 2px 2px #000, -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000",
+            fontSize: "30px",
+          }}
+        >
           Explore and stay updated on exciting happenings in Your area
-        </h2>
-        <h1 style={{ color: "black" }}>Discover an event near YOU!</h1>
+        </Text>
+        <br/>
+        <Text
+          style={{
+            fontFamily: "Barlow Condensed, sans-serif",
+            color: "#fff",
+            textShadow:
+              "2px 2px 2px #000, -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000",
+            fontSize: "60px",
+          }}
+        >
+          Discover an event near YOU!
+        </Text>
       </div>
     </div>
   );
@@ -43,7 +62,7 @@ export default function Home() {
   return (
     <div>
       <div className="titleheader">
-        <TextWithBackgroundImage />
+        <Banner />
       </div>
     </div>
   );

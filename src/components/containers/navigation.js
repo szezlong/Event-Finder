@@ -4,7 +4,6 @@ import { Menu, Flex, Col, Row, Typography } from "antd";
 import { items } from "../../helpers/nav_buttons.js";
 const { Text, Link } = Typography;
 
-
 export default function Navigation() {
   const [current, setCurrent] = React.useState("home"); //for now
 
@@ -22,8 +21,17 @@ export default function Navigation() {
           display: "flex",
         }}
       >
-        <Text strong italic style={{ color: "red", marginTop: 12 }}>
-          Event Finder Logo
+        <Text
+          strong
+          italic
+          style={{
+            color: "red",
+            marginTop: 8,
+            fontFamily: "Pattaya, sans-serif",
+            fontSize: "20px",
+          }}
+        >
+          Event Finder
         </Text>
       </Col>
       <Col span={14}>
@@ -36,7 +44,7 @@ export default function Navigation() {
           }}
         >
           {items.map((item) => (
-            <Menu.Item key={item.key} style={{ marginRight: "5vw"}}>
+            <Menu.Item key={item.key} style={{ marginRight: "5vw" }}>
               {item.label}
             </Menu.Item>
           ))}
