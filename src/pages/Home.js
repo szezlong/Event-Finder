@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Typography } from "antd";
-
 import SearchBar from "../components/search_bar";
 
 const { Title, Text } = Typography;
-const img_src =
-  "https://images.pexels.com/photos/3394225/pexels-photo-3394225.jpeg";
+
+const images = [
+  "https://images.pexels.com/photos/3394225/pexels-photo-3394225.jpeg",
+  "https://images.pexels.com/photos/2897462/pexels-photo-2897462.jpeg",
+  "https://images.pexels.com/photos/1652353/pexels-photo-1652353.jpeg",
+];
 
 const Banner = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   const backgroundImageStyle = {
-    backgroundImage: `url(${img_src})`,
+    backgroundImage: `url(${images[currentImage]})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     padding: "10vw",
