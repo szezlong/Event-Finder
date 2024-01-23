@@ -1,16 +1,18 @@
 import React from "react";
 import { Typography } from "antd";
 
+import SearchBar from "../components/search_bar";
+
 const { Title, Text } = Typography;
 const img_src =
-  "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+  "https://images.pexels.com/photos/3394225/pexels-photo-3394225.jpeg";
 
 const Banner = () => {
   const backgroundImageStyle = {
     backgroundImage: `url(${img_src})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    padding: "12vw",
+    padding: "10vw",
     position: "relative",
   };
 
@@ -29,7 +31,15 @@ const Banner = () => {
   return (
     <div style={backgroundImageStyle}>
       <div style={overlayStyle}></div>
-      <div style={{ position: "relative", zIndex: 1 }}>
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
         <Text
           style={{
             fontFamily: "Pattaya, sans-serif",
@@ -41,7 +51,6 @@ const Banner = () => {
         >
           Explore and stay updated on exciting happenings in Your area
         </Text>
-        <br/>
         <Text
           style={{
             fontFamily: "Barlow Condensed, sans-serif",
@@ -58,11 +67,25 @@ const Banner = () => {
   );
 };
 
+const absoluteStyle = {
+  backgroundColor: "white",
+  position: "absolute",
+  bottom: "200px",
+  left: "50%",
+  transform: "translateX(-50%)",
+  width: "40vw",
+  padding: "25px",
+  borderRadius: "8px",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  boxSizing: "border-box",
+};
+
 export default function Home() {
   return (
     <div>
-      <div className="titleheader">
-        <Banner />
+      <Banner />
+      <div style={absoluteStyle}>
+        <SearchBar />
       </div>
     </div>
   );
