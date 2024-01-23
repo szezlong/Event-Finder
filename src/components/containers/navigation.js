@@ -5,11 +5,10 @@ import { items } from "../../helpers/nav_buttons.js";
 const { Text, Link } = Typography;
 
 export default function Navigation() {
-  const [current, setCurrent] = React.useState("home"); //for now
+  const [current, setCurrent] = React.useState("home");
 
-  const onClick = (e) => {
-    console.log("click ", e);
-    setCurrent(e.key);
+  const onClick = (page) => {
+    setCurrent(page.key);
   };
 
   return (
