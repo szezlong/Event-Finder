@@ -25,7 +25,7 @@ export default function Navigation() {
           italic
           style={{
             color: "red",
-            marginTop: 8,
+            marginTop: 17,
             fontFamily: "Pattaya, sans-serif",
             fontSize: "20px",
           }}
