@@ -67,6 +67,8 @@ const Login = () => {
               fontSize: "12px",
               fontWeight: "bold",
               letterSpacing: "1px",
+              background: "linear-gradient(to right, #1677fe, #5ddfa7)",
+              border: "none",
             }}
           >
             LOGIN

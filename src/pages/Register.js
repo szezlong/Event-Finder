@@ -41,15 +41,23 @@ const Register = () => {
           </Text>
           <Input size="large" placeholder="your@address.com" />
 
-          <Text strong style={{display: "flex",  marginTop: 15, marginBottom: 5}}>Password</Text>
+          <Text
+            strong
+            style={{ display: "flex", marginTop: 15, marginBottom: 5 }}
+          >
+            Password
+          </Text>
           <Input.Password
             size="large"
             placeholder="Enter at least 6 characters"
           />
-                    <Text strong style={{display: "flex",  marginTop: 15, marginBottom: 5}}>Repeat your password</Text>
-          <Input.Password
-            size="large"
-          />
+          <Text
+            strong
+            style={{ display: "flex", marginTop: 15, marginBottom: 5 }}
+          >
+            Repeat your password
+          </Text>
+          <Input.Password size="large" />
           <Button
             type="primary"
             block
@@ -59,9 +67,11 @@ const Register = () => {
               fontSize: "12px",
               fontWeight: "bold",
               letterSpacing: "1px",
+              background: "linear-gradient(to right, #1677fe, #5ddfa7)",
+              border: "none",
             }}
           >
-            Sign Up
+            SIGN UP
           </Button>
         </Col>
         <Col
