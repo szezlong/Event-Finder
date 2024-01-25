@@ -4,7 +4,7 @@ import { Row, Col, Input, Button, Image, Typography } from "antd";
 
 const { Title, Text } = Typography;
 
-const Login = () => {
+const Register = () => {
   return (
     <div
       style={{
@@ -25,12 +25,12 @@ const Login = () => {
           }}
         >
           <Title level={3} style={{ marginBottom: 5, display: "flex" }}>
-            Login
+            Register
           </Title>
           <div style={{ display: "flex" }}>
-            <Text>Don't have an account yet?</Text>
+            <Text>Already have an account?</Text>
             <Text underline style={{ marginLeft: 10 }}>
-              <Link to="/register">Sign Up</Link>
+              <Link to="/login">Login</Link>
             </Text>
           </div>
           <Text
@@ -41,22 +41,14 @@ const Login = () => {
           </Text>
           <Input size="large" placeholder="your@address.com" />
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: "5px",
-              marginTop: 20,
-            }}
-          >
-            <Text strong>Password</Text>
-            <Text underline>
-              <Link to="/reset">Forgot Password?</Link>
-            </Text>
-          </div>
+          <Text strong style={{display: "flex",  marginTop: 15, marginBottom: 5}}>Password</Text>
           <Input.Password
             size="large"
             placeholder="Enter at least 6 characters"
+          />
+                    <Text strong style={{display: "flex",  marginTop: 15, marginBottom: 5}}>Repeat your password</Text>
+          <Input.Password
+            size="large"
           />
           <Button
             type="primary"
@@ -69,7 +61,7 @@ const Login = () => {
               letterSpacing: "1px",
             }}
           >
-            LOGIN
+            Sign Up
           </Button>
         </Col>
         <Col
@@ -82,9 +74,9 @@ const Login = () => {
           }}
         >
           <Image
-            src="https://img.freepik.com/free-vector/peace-mind-concept-illustration_114360-7308.jpg?w=740&t=st=1706215977~exp=1706216577~hmac=b6040ec4a16cc04b8bbc0cb57a1494a00d1359af1d2612a71745a86fc181ba06"
+            src="https://img.freepik.com/free-vector/location-search-concept-illustration_114360-5383.jpg?t=st=1706216882~exp=1706217482~hmac=461614b79c3dc2f50f753a6705230b59f0fed5c6dbb8cd8597d5f234bf003a06"
             alt="Vector image of a woman siting by her laptop"
-            style={{ maxHeight: "500px", padding: 20 }}
+            style={{ maxHeight: "550px", padding: 20 }}
           />
         </Col>
       </Row>
@@ -92,4 +84,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
