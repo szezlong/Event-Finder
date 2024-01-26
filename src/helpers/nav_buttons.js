@@ -13,7 +13,7 @@ export const items = [
     key: "about",
   },
   {
-    label: <Link to="/destination">Destination</Link>,
+    label: <Link to="/map">Map</Link>,
     key: "destination",
   },
   {

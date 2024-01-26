@@ -84,7 +84,7 @@ const Register = () => {
           }}
         >
           <Image
-            src="https://img.freepik.com/free-vector/location-search-concept-illustration_114360-5383.jpg?t=st=1706216882~exp=1706217482~hmac=461614b79c3dc2f50f753a6705230b59f0fed5c6dbb8cd8597d5f234bf003a06"
+            src="https://img.freepik.com/free-vector/around-world-concept-illustration_114360-3623.jpg?w=740&t=st=1706229107~exp=1706229707~hmac=b233aa7af086e7c56c7c184d3cee8af2aa5559df6f3adff5fd709586b168c09f"
             alt="Vector image of a woman siting by her laptop"
             style={{ maxHeight: "550px", padding: 20 }}
           />

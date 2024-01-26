@@ -9,11 +9,11 @@ const { Header, Content, Footer } = Layout;
 
 const GeneralLayout = () => {
   return (
-    <Layout style={{ display: 'flex', flexDirection: 'column' }}>
+    <Layout style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header style={{backgroundColor: "white"}}>
         <Navigation />
       </Header>
-      <Content style={{ minHeight: '90vh', flex: '1 0 auto', backgroundColor: "white"}}>
+      <Content style={{ flex: '1 0 auto', backgroundColor: "white"}}>
         <main className="App">
           <div className="container">
             <Outlet />
