@@ -7,6 +7,9 @@ import { MarkerClusterer } from '@googlemaps/markerclusterer';
 import { AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react-google-maps';
 import { Button, Tooltip } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import useFetchEvents from '../../helpers/functions/useFetchEvents.js';
+import { getEvents } from '../../services/events.js';
+import {useAsyncFn} from '../../hooks/useAsync.js';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const MAP_KEY = process.env.REACT_APP_GOOGLE_MAPS_MAP_KEY;
@@ -16,6 +19,19 @@ const MapComponent = () => {
   const [openPinKey, setOpenPinKey] = useState(null);
   const clusterer = useRef(null);
 
+  
+
+  const [reload, setReload] = useState(false)
+
+  const { events, loading, error } = useFetchEvents(reload);
+
+  useEffect(() => {
+    console.log("Display events")
+    console.log(events)
+
+}, [events])
+
+  
   const setMarkerRef = (marker, key) => {
     if (marker && markers[key]) return;
     if (!marker && !markers[key]) return;
