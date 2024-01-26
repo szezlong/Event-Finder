@@ -8,93 +8,133 @@ import {
   Flex,
   Menu,
   Divider,
+  List,
 } from "antd";
-import {
-  CheckCircleTwoTone,
-  HeartTwoTone,
-  SmileTwoTone,
-} from "@ant-design/icons";
-import { user_items } from "../helpers/user_menu";
+import { ClockCircleOutlined, EnvironmentOutlined } from "@ant-design/icons";
+
+import UserInfo from "../components/user_info";
 
 const { Header, Content, Sider } = Layout;
 const { Title, Text } = Typography;
 
-const UserInfo = () => {
+const EventsTitle = () => {
   return (
-    <Sider
-      width={300}
-      style={{ backgroundColor: "rgba(255, 255, 255, 0)", marginTop: 20 }}
-    >
-      <Card>
-        <Flex horizontal>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 40,
-            }}
-          >
-            <Avatar
-              size="large"
-              style={{ backgroundColor: "#e6f7ff" }}
-              icon={<SmileTwoTone />}
-            />
-          </div>
-          <div style={{ marginLeft: 20 }}>
-            <Title
-              level={3}
-              style={{
-                marginTop: 0,
-                marginBottom: 0,
-                textAlign: "left",
-              }}
-            >
-              Username
-            </Title>
-            <Text style={{ textAlign: "left" }}>email@example.com</Text>
-          </div>
-        </Flex>
-        <Divider style={{ marginBottom: 0, marginTop: 15 }} />
-        <Menu
-          defaultSelectedKeys={["saved"]}
-          defaultOpenKeys={["saved"]}
-          mode="inline"
-          items={user_items}
-          inlineCollapsed={true}
-          style={{ border: "none" }}
-        />
-      </Card>
-    </Sider>
+    <Flex vertical style={{ marginBottom: 30 }}>
+      <Title level={3} style={{ textAlign: "left", marginBottom: 0 }}>
+        Saved Events
+      </Title>
+      <Text style={{ textAlign: "left" }}>
+        Find your saved events and get ready to join them!
+      </Text>
+    </Flex>
   );
 };
 
-const SavedEvents = () => {
+const EventCard = ({ name, date, address, description }) => {
   return (
-    <Content style={{ padding: 10, marginLeft: 30 }}>
-      <Title level={2}>Saved Events</Title>
-      <Row gutter={[16, 16]}>
-        <Col span={8}>
-          <Card title="Event 1" bordered={false}>
-            Event details here
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Event 2" bordered={false}>
-            Event details here
-          </Card>
-        </Col>
-        {/* Add more cards for saved events here */}
-      </Row>
+    <Card bordered={false} style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          backgroundColor: "#5ddfa7",
+          borderRadius: "5px",
+          padding: "7px",
+          marginBottom: 10,
+        }}
+      >
+        <Text
+          strong
+          style={{
+            fontFamily: "Barlow Condensed, sans-serif",
+            color: "#fff",
+            textShadow:
+              "1px 1px 1px #000, -1px -1px 1px #000, 1px -1px 1px #000, -1px 1px 1px #000",
+            fontSize: "25px",
+          }}
+        >
+          {name}
+        </Text>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "5px",
+        }}
+      >
+        <Text>
+          <ClockCircleOutlined style={{ marginRight: 5}} />
+          {date}
+        </Text>
+        <Text>
+          <EnvironmentOutlined style={{ marginRight: 5 }} />
+          {address}
+        </Text>
+      </div>
+      <Divider style={{ marginTop: 10, marginBottom: 5 }} />
+      <div style={{ display: "flex", marginTop: 7, textAlign: "justify" }}>
+        <Text>{description}</Text>
+      </div>
+    </Card>
+  );
+};
+
+const MockupData = [
+  {
+    name: "Super Event no 1",
+    date: "Date of the event",
+    address: "Address of the event",
+    description: "Details of the event, it's description perhaps. Lorem ipsum",
+  },
+  {
+    name: "Super Event no 2",
+    date: "Date of the event",
+    address: "Address of the event",
+    description: "Details of the event, it's description perhaps. Lorem ipsum",
+  },
+  {
+    name: "Super Event no 3",
+    date: "Date of the event",
+    address: "Address of the event",
+    description: "Details of the event, it's description perhaps. Lorem ipsum",
+  },
+];
+
+const Events = () => {
+  return (
+    <Content style={{ padding: 0, marginInline: 60}}>
+      <EventsTitle />
+      <List
+        grid={{
+          gutter: 20,
+          xs: 1,
+          sm: 1,
+          md: 2,
+          lg: 3,
+          xl: 3,
+          xxl: 3,
+        }}
+        dataSource={MockupData}
+        renderItem={(item) => (
+          <List.Item>
+            <EventCard
+              name={item.name}
+              date={item.date}
+              address={item.address}
+              description={item.description}
+            />
+          </List.Item>
+        )}
+      />
     </Content>
   );
 };
 
 const Saved = () => {
   return (
-    <Layout style={{ padding: "0 70px", paddingTop: 20, paddingBottom: 50 }}>
-      <UserInfo />
-      <SavedEvents />
+    <Layout style={{ paddingTop: 20, paddingBottom: 50 }}>
+      <UserInfo/>
+      <Events />
     </Layout>
   );
 };
