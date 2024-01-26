@@ -24,7 +24,7 @@ export const user_items = [
   },
   {
     label: (
-      <Link to="/home">
+      <Link to="/">
         <Text underline style={{ display: "flex", marginLeft: 15, color: "red" }}>
           Log out
         </Text>

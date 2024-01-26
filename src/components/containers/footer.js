@@ -78,10 +78,10 @@ export default function FooterContainer() {
             <Text strong>30012965</Text>
           </Row>
           <Row>
-            <Text strong>3001296_</Text>
+            <Text strong>30012964</Text>
           </Row>
           <Row>
-            <Text strong>3001296_</Text>
+            <Text strong>30012958</Text>
           </Row>
         </Col>
       </Row>

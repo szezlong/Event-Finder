@@ -18,7 +18,7 @@ const { Title, Text } = Typography;
 const UserInfo = () => {
   return (
     <Sider
-      width={270}
+      width={300}
       style={{ backgroundColor: "rgba(255, 255, 255, 0)", marginTop: 20 }}
       breakpoint="lg"
       collapsedWidth="0"
