@@ -1,42 +1,31 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Button, Menu, Typography } from "antd";
 
 export const items = [
   {
-    label: (
-      <a href="@" target="_blank" rel="noopener noreferrer">
-        Home
-      </a>
-    ),
+    label: <Link to="/">Home</Link>,
     key: "home",
   },
   {
-    label: (
-      <a href="@" target="_blank" rel="noopener noreferrer">
-        About
-      </a>
-    ),
+    label: <Link to="/about">About</Link>,
     key: "about",
   },
   {
-    label: (
-      <a href="@" target="_blank" rel="noopener noreferrer">
-        Destination
-      </a>
-    ),
-    key: "destination",
+    label: <Link to="/map">Map</Link>,
+    key: "map",
+  },
+  {
+    label: <Link to="/saved">Saved</Link>,
+    key: "saved",
   },
   {
     label: (
-      <a href="@" target="_blank" rel="noopener noreferrer">
-        Contact
-      </a>
+      <Button type="primary">
+        <Link to="/login">Login</Link>
+      </Button>
     ),
-    key: "contact",
-  },
-  {
-    label: <Button type="primary">Login</Button>,
     key: "login",
   },
 ];
