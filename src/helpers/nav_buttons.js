@@ -14,11 +14,11 @@ export const items = [
   },
   {
     label: <Link to="/map">Map</Link>,
-    key: "destination",
+    key: "map",
   },
   {
-    label: <Link to="/contact">Contact</Link>,
-    key: "contact",
+    label: <Link to="/saved">Saved</Link>,
+    key: "saved",
   },
   {
     label: (

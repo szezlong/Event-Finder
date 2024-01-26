@@ -5,7 +5,8 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import AboutUs from "./pages/About";
+import About from "./pages/About";
+import Saved from "./pages/Saved";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/about" element={<AboutUs />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/saved" element={<Saved />} />
       </Route>
     </Routes>
   );

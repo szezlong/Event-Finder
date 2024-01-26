@@ -4,7 +4,7 @@ import { Row, Col, Input, Button, Image, Typography, Flex } from "antd";
 
 const { Title, Text } = Typography;
 
-const AboutUs = () => {
+const About = () => {
   return (
     <div style={{ marginBottom: 150 }}>
       <div
@@ -199,4 +199,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default About;
