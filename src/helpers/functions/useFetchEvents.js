@@ -25,7 +25,7 @@ function reducer(state, action) {
 
 export default function useFetchEvents(params) {
     const [state, dispatch] = useReducer(reducer, { events: [], loading: true })
-    console.log("Fetching events")
+    //console.log("Fetching events")
 
     useEffect(() => {
         //const cancelToken = axios.CancelToken.source()
@@ -33,11 +33,11 @@ export default function useFetchEvents(params) {
         fetch(BASE_URL, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvbGFrQGdhbWlsLmNvbSIsImlhdCI6MTcwNjI5NjgzOCwiZXhwIjoxNzA2Mzk2ODM4fQ.YB9po6QAxxGgyoAu52UQOdWgFchb5YsrKjVN8Dkj8f4'
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvbGFrQGdhbWlsLmNvbSIsImlhdCI6MTcwNjM2MDAxMCwiZXhwIjoxNzA2NDYwMDEwfQ.MPHKOX7VYxEA5jGkU3dfHgys_t-OI_U0WmtG0vumllg'
             }
         }).then(res => res.json())
         .then(data => {
-            console.log("Got those juicy events")
+            //console.log("Got those juicy events")
             dispatch({type: ACTIONS.GET_DATA, payload: {events: data}})
         }).catch(e => {
             console.error("Error fetching events:", e);
