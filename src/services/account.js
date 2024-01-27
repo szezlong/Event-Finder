@@ -1,11 +1,11 @@
 import { makeRequest } from "./makeRequest"
 
-export function login({ username, pswd }) {
+export function login({ email, password }) {
     return makeRequest(`auth/authenticate`, {
         method: "POST",
         data: {
-            username: username,
-            pswd: pswd
+            email: email,
+            password: password
         },
     })
 }

@@ -1,12 +1,53 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Row, Col, Input, Button, Image, Typography } from "antd";
+import {
+  Row,
+  Col,
+  Input,
+  Button,
+  Image,
+  Typography,
+  Form,
+  Select,
+  message,
+} from "antd";
 
+import { useNavigate } from "react-router-dom";
+import { login } from "../services/account";
+import { useAsyncFn } from "../hooks/useAsync";
 const { Title, Text } = Typography;
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [form] = Form.useForm();
+  const { loading, execute: loginFn } = useAsyncFn(login);
+
+  const onFinish = async (values) => {
+    try {
+      return loginFn(values)
+        .then((response) => {
+          console.log(response);
+          if (response) {
+            navigate("/");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          message.error("Login failed. Please try again.");
+        });
+    } catch (error) {
+      console.log("Tried: ", values);
+      console.error("Error when login:", error);
+      message.error("An error occurred. Please try again later.");
+    }
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
-    <div
+    <Form
       style={{
         display: "flex",
         justifyContent: "center",
@@ -14,6 +55,9 @@ const Login = () => {
         padding: "10px",
         marginTop: 50,
       }}
+      form={form}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
     >
       <Row gutter={16}>
         <Col
@@ -27,19 +71,28 @@ const Login = () => {
           <Title level={3} style={{ marginBottom: 5, display: "flex" }}>
             Login
           </Title>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", marginBottom: 25 }}>
             <Text>Don't have an account yet?</Text>
             <Text underline style={{ marginLeft: 10 }}>
               <Link to="/register">Sign Up</Link>
             </Text>
           </div>
-          <Text
-            strong
-            style={{ display: "flex", marginTop: 25, marginBottom: 5 }}
-          >
+
+          <Text strong style={{ display: "flex", marginBottom: 5 }}>
             Email Address
           </Text>
-          <Input size="large" placeholder="your@address.com" />
+          <Form.Item
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: "Please input your email address!",
+              },
+            ]}
+            style={{ marginBottom: 20 }}
+          >
+            <Input size="large" placeholder="your@address.com" />
+          </Form.Item>
 
           <div
             style={{
@@ -54,16 +107,29 @@ const Login = () => {
               <Link to="/reset">Forgot Password?</Link>
             </Text>
           </div>
-          <Input.Password
-            size="large"
-            placeholder="Enter at least 6 characters"
-          />
+          <Form.Item
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "You have not provided a password!",
+              },
+            ]}
+            style={{ marginBottom: 20 }}
+          >
+            <Input.Password
+              size="large"
+              placeholder="Enter at least 6 characters"
+            />
+          </Form.Item>
+
           <Button
             type="primary"
             block
             size="large"
+            htmlType="submit"
             style={{
-              marginTop: 35,
+              marginTop: 15,
               fontSize: "12px",
               fontWeight: "bold",
               letterSpacing: "1px",
@@ -90,7 +156,7 @@ const Login = () => {
           />
         </Col>
       </Row>
-    </div>
+    </Form>
   );
 };
 
