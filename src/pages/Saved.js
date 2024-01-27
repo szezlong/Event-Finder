@@ -13,6 +13,7 @@ import {
 import { ClockCircleOutlined, EnvironmentOutlined } from "@ant-design/icons";
 
 import UserInfo from "../components/user_info";
+import HeartButton from "../helpers/heart_button";
 
 const { Header, Content, Sider } = Layout;
 const { Title, Text } = Typography;
@@ -32,7 +33,7 @@ const EventsTitle = () => {
 
 const EventCard = ({ name, date, address, description }) => {
   return (
-    <Card bordered={false} style={{ display: "flex", flexDirection: "column" }}>
+    <Card bordered={false} style={{ display: "flex", flexDirection: "column"}}>
       <div
         style={{
           backgroundColor: "#5ddfa7",
@@ -63,7 +64,7 @@ const EventCard = ({ name, date, address, description }) => {
         }}
       >
         <Text>
-          <ClockCircleOutlined style={{ marginRight: 5}} />
+          <ClockCircleOutlined style={{ marginRight: 5 }} />
           {date}
         </Text>
         <Text>
@@ -74,6 +75,15 @@ const EventCard = ({ name, date, address, description }) => {
       <Divider style={{ marginTop: 10, marginBottom: 5 }} />
       <div style={{ display: "flex", marginTop: 7, textAlign: "justify" }}>
         <Text>{description}</Text>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "flex-end",
+        }}
+      >
+        <HeartButton />
       </div>
     </Card>
   );
@@ -102,7 +112,7 @@ const MockupData = [
 
 const Events = () => {
   return (
-    <Content style={{ padding: 0, marginInline: 60}}>
+    <Content style={{ padding: 0, marginInline: 60 }}>
       <EventsTitle />
       <List
         grid={{
@@ -133,7 +143,7 @@ const Events = () => {
 const Saved = () => {
   return (
     <Layout style={{ paddingTop: 20, paddingBottom: 50 }}>
-      <UserInfo/>
+      <UserInfo />
       <Events />
     </Layout>
   );
