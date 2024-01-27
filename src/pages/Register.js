@@ -1,14 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Row, Col, Input, Button, Image, Typography, Form, Select } from "antd";
+import {
+  Row,
+  Col,
+  Input,
+  Button,
+  Image,
+  Typography,
+  Form,
+  Select,
+  message,
+} from "antd";
+
+import { useNavigate } from "react-router-dom";
+import { register } from "../services/account";
+import { useAsyncFn } from "../hooks/useAsync";
+
 const { Option } = Select;
 const { Title, Text } = Typography;
 
 const Register = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
+  const { loading, execute: registerFn } = useAsyncFn(register);
 
-  const onFinish = (values) => {
-    console.log(values);
+  const onFinish = async (values) => {
+    try {
+      return registerFn(values)
+        .then((response) => {
+          console.log(response);
+          if (response) {
+            message.success("Registration successful!");
+            navigate("/login");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          message.error("Registration failed. Please try again.");
+        });
+    } catch (error) {
+      console.log("Tried: ", values);
+      console.error("Error registering user:", error);
+      message.error("An error occurred. Please try again later.");
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -56,11 +90,11 @@ const Register = () => {
           </Text>
 
           <Form.Item
-            name="fname"
+            name="firstName"
             rules={[
               {
                 required: true,
-                message: 'Please input your name!'
+                message: "Please input your name!",
               },
             ]}
             style={{ marginBottom: 20 }}
@@ -72,11 +106,11 @@ const Register = () => {
             Last Name
           </Text>
           <Form.Item
-            name="lname"
+            name="lastName"
             rules={[
               {
                 required: true,
-                message: 'Please input your surname!'
+                message: "Please input your surname!",
               },
             ]}
             style={{ marginBottom: 20 }}
@@ -92,7 +126,7 @@ const Register = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your email address!'
+                message: "Please input your email address!",
               },
             ]}
             style={{ marginBottom: 20 }}
@@ -107,11 +141,11 @@ const Register = () => {
             Password
           </Text>
           <Form.Item
-            name="psswd"
+            name="password"
             rules={[
               {
                 required: true,
-                message: 'You have not provided a password!'
+                message: "You have not provided a password!",
               },
             ]}
             style={{ marginBottom: 20 }}
