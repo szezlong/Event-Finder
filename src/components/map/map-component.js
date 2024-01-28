@@ -27,8 +27,8 @@ const MapComponent = () => {
   const { events, loading, error } = useFetchEvents(reload);
 
   useEffect(() => {
-    console.log("Display events")
-    console.log(events)
+    // console.log("Display events")
+    // console.log(events)
 
 }, [events])
 
@@ -102,8 +102,8 @@ const Markers = ({ points, onPinClick, openPinKey }) => {
   return (
     <>
       {points.map(point => (
-        console.log(point)
-        ||
+        // console.log(point)
+        // ||
         <EventPin
         key={point.id}
         point={point}
