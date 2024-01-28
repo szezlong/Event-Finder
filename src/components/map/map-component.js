@@ -1,7 +1,6 @@
 //require('dotenv').config();
 import React, { useState, useEffect, useRef } from 'react';
 import { APIProvider, Map, useMap } from '@vis.gl/react-google-maps';
-import trees from './trees.ts'; // Assuming 'trees' is a JavaScript file
 // import EventPin from './event-pin.js';
 import { MarkerClusterer } from '@googlemaps/markerclusterer';
 import { AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react-google-maps';
