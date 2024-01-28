@@ -32,3 +32,19 @@ export function addEvent({name, description, street, number, postCode, city, cou
     },
   })
 }
+
+export function attendEvent({userId, eventId}){
+  console.log("Attending event")
+  console.log(localStorage.getItem('token'))
+  return makeRequest(`events/register`,{
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    },
+    data: {
+      userId: userId,
+      eventId: eventId
+    },
+  })
+}

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import MapComponent from "../components/map/map-component";
 import { Button, Modal, Form, Input, DatePicker, message } from "antd";
+import { ReloadOutlined } from '@ant-design/icons';
 import { Loader } from "@googlemaps/js-api-loader";
 //import { GoogleMap, LoadScript, Marker } from "@vis.gl/react-google-maps";
 import {
@@ -78,16 +79,20 @@ export default function MapWindow() {
     
   };
 
+  const [refresh, setRefresh] = useState(false)
+
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <h1>Mapa</h1>
+      <h1>Map</h1>
       <div style={{ alignSelf: "flex-end", marginBottom: "10px", marginRight: "10px" }}>
+        <Button style={{marginRight: "10px" }} type="primary" icon={<ReloadOutlined />} onClick={() => {setRefresh(!refresh)}}>
+        </Button>
         <Button type="primary" onClick={showModal}>
           ADD EVENT
         </Button>
       </div>
       <div style={{ height: "70vh", width: "100%" }}>
-        <MapComponent />
+        <MapComponent refresh={refresh}/>
       </div>
 
       <Modal

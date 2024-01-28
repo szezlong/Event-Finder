@@ -15,22 +15,12 @@ import EventPin from './event-pin.js';
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const MAP_KEY = process.env.REACT_APP_GOOGLE_MAPS_MAP_KEY;
 
-const MapComponent = () => {
+const MapComponent = (refresh) => {
   const [markers, setMarkers] = useState({});
   const [openPinKey, setOpenPinKey] = useState(null);
   const clusterer = useRef(null);
 
-  
-
-  const [reload, setReload] = useState(false)
-
-  const { events, loading, error } = useFetchEvents(reload);
-
-  useEffect(() => {
-    // console.log("Display events")
-    // console.log(events)
-
-}, [events])
+  const { events, loading, error } = useFetchEvents(refresh);
 
   
   const setMarkerRef = (marker, key) => {

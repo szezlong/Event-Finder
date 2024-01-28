@@ -4,9 +4,36 @@ import { Tooltip, Button } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import formatDateTime from '../../helpers/functions/formatDateTime';
+import { useAsyncFn } from '../../hooks/useAsync';
+import { message } from 'antd';
+import { attendEvent } from '../../services/events';
 
 const EventPin = React.forwardRef(({point, position, onClick, setSelectedPoint, isSelected }, ref) => {
     const [attending, setAttending] = useState(false);
+
+    const { execute: attendEventFn } = useAsyncFn(attendEvent);
+
+    function onEventAttend(){
+        console.log(localStorage.getItem("userId"))
+        console.log(point.id)
+        return attendEventFn({
+            userId: localStorage.getItem("userId"),
+            eventId: point.id
+        }).then((res) => {
+            console.log(res)
+            message.success({
+                content: "Yay! Attending event!",
+                duration: 5,
+              })
+        }).catch((err) => {
+            console.log(err)
+            message.error({
+                content: "Oops! Something went terribly wrong.",
+                duration: 5,
+              });
+        })
+    }
+
     return (
         <>
             <AdvancedMarker
@@ -47,6 +74,7 @@ const EventPin = React.forwardRef(({point, position, onClick, setSelectedPoint, 
                 <p>{point.address.postCode + ", " + point.address.city}</p>
                 <p>{formatDateTime(point.date)}</p>
                 <Button onClick={() => {
+                    onEventAttend()
                     setAttending(!attending)
                     }}
                 >
