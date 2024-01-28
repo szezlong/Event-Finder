@@ -20,12 +20,4 @@ export const items = [
     label: <Link to="/saved">Saved</Link>,
     key: "saved",
   },
-  {
-    label: (
-      <Button type="primary">
-        <Link to="/login">Login</Link>
-      </Button>
-    ),
-    key: "login",
-  },
 ];

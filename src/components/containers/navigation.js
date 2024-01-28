@@ -1,15 +1,51 @@
 import React from "react";
-import { Menu, Flex, Col, Row, Typography } from "antd";
+import { Link } from "react-router-dom";
 
+import { Menu, Flex, Col, Row, Typography, Button, message } from "antd";
+import useAuth from "../../hooks/useAuth.js";
 import { items } from "../../helpers/nav_buttons.js";
-const { Text, Link } = Typography;
+import { useAsyncFn } from "../../hooks/useAsync.js";
+import { logout } from "../../services/account.js";
+
+const { Text } = Typography;
 
 export default function Navigation() {
   const [current, setCurrent] = React.useState("home");
+  const { auth, setAuth } = useAuth();
+  const { execute: logoutFn } = useAsyncFn(logout);
 
   const onClick = (page) => {
     setCurrent(page.key);
   };
+
+  function isLoggedIn() {
+    if (auth.userId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function onLogout() {
+    setAuth({});
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    message.success("Logged out successfully");
+
+    // return logoutFn()
+    //   .then(() => {
+    //     setAuth({});
+    //     localStorage.removeItem("isLoggedIn");
+    //     localStorage.removeItem("token");
+    //     localStorage.removeItem("userId");
+    // message.success("Logged out successfully");
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //     message.error("Login failed. Please try again.");
+    //   });
+  }
 
   return (
     <Row>
@@ -47,6 +83,19 @@ export default function Navigation() {
               {item.label}
             </Menu.Item>
           ))}
+          {isLoggedIn() ? (
+            <Menu.Item key="logout" style={{ marginRight: "5vw" }}>
+              <Button onClick={() => onLogout()} type="primary">
+                Logout
+              </Button>
+            </Menu.Item>
+          ) : (
+            <Menu.Item key="login" style={{ marginRight: "5vw" }}>
+              <Button type="primary">
+                <Link to="/login">Login</Link>
+              </Button>
+            </Menu.Item>
+          )}
         </Menu>
       </Col>
     </Row>

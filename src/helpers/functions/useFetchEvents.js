@@ -33,7 +33,7 @@ export default function useFetchEvents(params) {
         fetch(BASE_URL, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvbGFrQGdhbWlsLmNvbSIsImlhdCI6MTcwNjM2MDAxMCwiZXhwIjoxNzA2NDYwMDEwfQ.MPHKOX7VYxEA5jGkU3dfHgys_t-OI_U0WmtG0vumllg'
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
             }
         }).then(res => res.json())
         .then(data => {
