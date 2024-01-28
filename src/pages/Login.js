@@ -15,19 +15,29 @@ import {
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/account";
 import { useAsyncFn } from "../hooks/useAsync";
+import useAuth from "../hooks/useAuth";
+
 const { Title, Text } = Typography;
 
 const Login = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const { loading, execute: loginFn } = useAsyncFn(login);
+  const { setAuth } = useAuth();
 
   const onFinish = async (values) => {
     try {
       return loginFn(values)
         .then((response) => {
-          console.log(response);
           if (response) {
+            const userId = response?.userId;
+            const token = response?.token;
+            localStorage.setItem("isLoggedIn", true);
+            localStorage.setItem("token", token);
+            localStorage.setItem("userId", userId);
+
+            setAuth({userId, token});
+            console.log(localStorage);
             navigate("/");
           }
         })
