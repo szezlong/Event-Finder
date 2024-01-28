@@ -84,11 +84,16 @@ export default function Navigation() {
             </Menu.Item>
           ))}
           {isLoggedIn() ? (
-            <Menu.Item key="logout" style={{ marginRight: "5vw" }}>
-              <Button onClick={() => onLogout()} type="primary">
-                Logout
-              </Button>
-            </Menu.Item>
+            <>
+              <Menu.Item key="saved" style={{ marginRight: "5vw" }}>
+                <Link to={"/saved/" + auth.userId}>Saved</Link>
+              </Menu.Item>
+              <Menu.Item key="logout" style={{ marginRight: "5vw" }}>
+                <Button onClick={() => onLogout()} type="primary">
+                  Logout
+                </Button>
+              </Menu.Item>
+            </>
           ) : (
             <Menu.Item key="login" style={{ marginRight: "5vw" }}>
               <Button type="primary">

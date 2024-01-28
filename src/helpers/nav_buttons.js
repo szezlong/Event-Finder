@@ -16,8 +16,4 @@ export const items = [
     label: <Link to="/map">Map</Link>,
     key: "map",
   },
-  {
-    label: <Link to="/saved">Saved</Link>,
-    key: "saved",
-  },
 ];

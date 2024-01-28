@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import Saved from "./pages/Saved";
-
+import { UserProvider } from "./contexts/UserContext";
 
 function App() {
   return (
@@ -19,7 +19,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
-        <Route path="/saved" element={<Saved />} />
+        <Route
+          path="/saved/:uId"
+          element={
+            <UserProvider>
+              <Saved />
+            </UserProvider>
+          }
+        ></Route>
       </Route>
     </Routes>
   );

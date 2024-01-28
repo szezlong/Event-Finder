@@ -15,6 +15,8 @@ import { ClockCircleOutlined, EnvironmentOutlined } from "@ant-design/icons";
 import UserInfo from "../components/user_info";
 import HeartButton from "../helpers/heart_button";
 
+import { useUser } from "../contexts/UserContext";
+
 const { Header, Content, Sider } = Layout;
 const { Title, Text } = Typography;
 
@@ -111,6 +113,15 @@ const MockupData = [
 ];
 
 const Events = () => {
+  const {
+    //userId,
+    user,
+    // firstname = user.firstname,
+    // lastname = user.lastname,
+    // email = user.email,
+    // events = user.events,
+  } = useUser();
+  
   return (
     <Content style={{ padding: 0, marginInline: 60 }}>
       <EventsTitle />
@@ -128,7 +139,7 @@ const Events = () => {
         renderItem={(item) => (
           <List.Item>
             <EventCard
-              name={item.name}
+              name={user.firstname}
               date={item.date}
               address={item.address}
               description={item.description}
