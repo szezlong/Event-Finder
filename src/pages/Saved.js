@@ -95,27 +95,6 @@ const EventCard = ({ name, date, address, description }) => {
   );
 };
 
-const MockupData = [
-  {
-    name: "Super Event no 1",
-    date: "Date of the event",
-    address: "Address of the event",
-    description: "Details of the event, it's description perhaps. Lorem ipsum",
-  },
-  {
-    name: "Super Event no 2",
-    date: "Date of the event",
-    address: "Address of the event",
-    description: "Details of the event, it's description perhaps. Lorem ipsum",
-  },
-  {
-    name: "Super Event no 3",
-    date: "Date of the event",
-    address: "Address of the event",
-    description: "Details of the event, it's description perhaps. Lorem ipsum",
-  },
-];
-
 function Events({ user }) {
   return (
     <Content style={{ padding: 0, marginInline: 60 }}>

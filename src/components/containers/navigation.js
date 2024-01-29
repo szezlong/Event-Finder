@@ -32,7 +32,7 @@ export default function Navigation() {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     message.success("Logged out successfully");
-
+    
     // return logoutFn()
     //   .then(() => {
     //     setAuth({});
@@ -90,7 +90,7 @@ export default function Navigation() {
               </Menu.Item>
               <Menu.Item key="logout" style={{ marginRight: "5vw" }}>
                 <Button onClick={() => onLogout()} type="primary">
-                  Logout
+                  <Link to="/">Logout</Link>
                 </Button>
               </Menu.Item>
             </>

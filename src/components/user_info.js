@@ -8,14 +8,29 @@ import {
   Flex,
   Menu,
   Divider,
+  message,
+  Button,
 } from "antd";
+import { Link } from "react-router-dom";
+import { LogoutOutlined } from "@ant-design/icons";
 import { SmileTwoTone } from "@ant-design/icons";
 import { user_items } from "../helpers/user_menu";
+import useAuth from "../hooks/useAuth";
 
 const { Header, Content, Sider } = Layout;
 const { Title, Text } = Typography;
 
-export default function UserInfo({user}) {
+export default function UserInfo({ user }) {
+  const { auth, setAuth } = useAuth();
+
+  function onLogout() {
+    setAuth({});
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    message.success("Logged out successfully");
+  }
+
   return (
     <Sider
       width={300}
@@ -23,7 +38,7 @@ export default function UserInfo({user}) {
       breakpoint="lg"
       collapsedWidth="0"
     >
-      <Card style={{marginLeft: 30}}>
+      <Card style={{ marginLeft: 30 }}>
         <Flex horizontal>
           <div
             style={{
@@ -58,11 +73,34 @@ export default function UserInfo({user}) {
           defaultSelectedKeys={["saved"]}
           defaultOpenKeys={["saved"]}
           mode="inline"
-          items={user_items}
           inlineCollapsed={true}
           style={{ border: "none" }}
-        />
+        >
+          {user_items.map((item) => (
+            <Menu.Item
+              key={item.key}
+              style={{ marginRight: "5vw" }}
+              icon={item.icon}
+            >
+              {item.label}
+            </Menu.Item>
+          ))}
+          <Menu.Item
+            key="logout"
+            icon={<LogoutOutlined style={{ color: "red" }} />}
+            onClick={() => onLogout()}
+          >
+            <Link to="/">
+              <Text
+                underline
+                style={{ display: "flex", marginLeft: 15, color: "red" }}
+              >
+                Log out
+              </Text>
+            </Link>
+          </Menu.Item>
+        </Menu>
       </Card>
     </Sider>
   );
-};
+}

@@ -23,7 +23,7 @@ export function register({firstName, lastName, email, password }) {
 }
 
 export function logout(){
-    return makeRequest(`Account/logout`, {
+    return makeRequest(`auth/authenticate`, {
         method: "POST",
     })
 }
