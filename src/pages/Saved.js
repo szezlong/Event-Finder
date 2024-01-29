@@ -16,12 +16,12 @@ import UserInfo from "../components/user_info";
 import HeartButton from "../helpers/heart_button";
 
 import { useUser } from "../contexts/UserContext";
+import formatDateTime from "../helpers/functions/formatDateTime";
 
 const { Header, Content, Sider } = Layout;
 const { Title, Text } = Typography;
 
 const EventsTitle = () => {
-  console.log("EventsTitle")
   return (
     <Flex vertical style={{ marginBottom: 30 }}>
       <Title level={3} style={{ textAlign: "left", marginBottom: 0 }}>
@@ -35,9 +35,8 @@ const EventsTitle = () => {
 };
 
 const EventCard = ({ name, date, address, description }) => {
-  console.log("EventCard")
   return (
-    <Card bordered={false} style={{ display: "flex", flexDirection: "column"}}>
+    <Card bordered={false} style={{ display: "flex", flexDirection: "column" }}>
       <div
         style={{
           backgroundColor: "#5ddfa7",
@@ -59,21 +58,24 @@ const EventCard = ({ name, date, address, description }) => {
           {name}
         </Text>
       </div>
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: "5px",
-        }}
-      >
+      <div style={{ display: "flex" }}>
         <Text>
           <ClockCircleOutlined style={{ marginRight: 5 }} />
-          {date}
+          {formatDateTime(date)}
         </Text>
-        <Text>
+      </div>
+      <Divider style={{ marginTop: 10, marginBottom: 5 }} />
+
+      <div style={{ display: "flex" }}>
+        <Text style={{ textAlign: "left" }}>
           <EnvironmentOutlined style={{ marginRight: 5 }} />
-          {address}
+          {address.street +
+            " " +
+            address.number +
+            ", " +
+            address.postCode +
+            ", " +
+            address.city}
         </Text>
       </div>
       <Divider style={{ marginTop: 10, marginBottom: 5 }} />
@@ -114,17 +116,7 @@ const MockupData = [
   },
 ];
 
-const Events = () => {
-  console.log("Events")
-  const {
-    //userId,
-    user,
-    // firstname = user.firstname,
-    // lastname = user.lastname,
-    // email = user.email,
-    // events = user.events,
-  } = useUser();
-  
+function Events({ user }) {
   return (
     <Content style={{ padding: 0, marginInline: 60 }}>
       <EventsTitle />
@@ -138,31 +130,29 @@ const Events = () => {
           xl: 3,
           xxl: 3,
         }}
-        dataSource={MockupData}
-        renderItem={(item) => (
+        dataSource={user.events}
+        renderItem={(event) => (
           <List.Item>
             <EventCard
-              name={user.firstname}
-              date={item.date}
-              address={item.address}
-              description={item.description}
+              name={event.name}
+              date={event.date}
+              address={event.address}
+              description={event.description}
             />
           </List.Item>
         )}
       />
     </Content>
   );
-};
+}
 
 export function Saved() {
-  console.log("Saved")
   const { userId, user } = useUser();
   return (
     <Layout style={{ paddingTop: 20, paddingBottom: 50 }}>
       {console.log(user)}
-      {/* <UserInfo /> */}
-      {/* <Events /> */}
-      <h1>DUPA</h1>
+      <UserInfo user={user} />
+      {user.events ? <Events user={user} /> : <></>}
     </Layout>
   );
-};
+}

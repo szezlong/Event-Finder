@@ -15,7 +15,7 @@ import { user_items } from "../helpers/user_menu";
 const { Header, Content, Sider } = Layout;
 const { Title, Text } = Typography;
 
-const UserInfo = () => {
+export default function UserInfo({user}) {
   return (
     <Sider
       width={300}
@@ -48,9 +48,9 @@ const UserInfo = () => {
                 textAlign: "left",
               }}
             >
-              Username
+              {user.firstname}
             </Title>
-            <Text style={{ textAlign: "left" }}>email@example.com</Text>
+            <Text style={{ textAlign: "left" }}>{user.email}</Text>
           </div>
         </Flex>
         <Divider style={{ marginBottom: 0, marginTop: 15 }} />
@@ -66,5 +66,3 @@ const UserInfo = () => {
     </Sider>
   );
 };
-
-export default UserInfo;
