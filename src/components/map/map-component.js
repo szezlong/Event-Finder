@@ -1,15 +1,9 @@
-//require('dotenv').config();
-import React, { useState, useEffect, useRef } from 'react';
-import { APIProvider, Map, useMap } from '@vis.gl/react-google-maps';
-// import EventPin from './event-pin.js';
-import { MarkerClusterer } from '@googlemaps/markerclusterer';
-import { AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react-google-maps';
-import { Button, Tooltip } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
-import useFetchEvents from '../../helpers/functions/useFetchEvents.js';
-import { getEvents } from '../../services/events.js';
-import {useAsyncFn} from '../../hooks/useAsync.js';
-import EventPin from './event-pin.js';
+import React, { useState, useEffect, useRef } from "react";
+import { APIProvider, Map, useMap } from "@vis.gl/react-google-maps";
+import { MarkerClusterer } from "@googlemaps/markerclusterer";
+import { Pin } from "@vis.gl/react-google-maps";
+import useFetchEvents from "../../helpers/functions/useFetchEvents.js";
+import EventPin from "./event-pin.js";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const MAP_KEY = process.env.REACT_APP_GOOGLE_MAPS_MAP_KEY;
@@ -17,11 +11,9 @@ const MAP_KEY = process.env.REACT_APP_GOOGLE_MAPS_MAP_KEY;
 const MapComponent = (refresh) => {
   const [markers, setMarkers] = useState({});
   const [openPinKey, setOpenPinKey] = useState(null);
-  const clusterer = useRef(null);
 
-  const { events, loading, error } = useFetchEvents(refresh);
+  const { events, loading } = useFetchEvents(refresh);
 
-  
   const setMarkerRef = (marker, key) => {
     if (marker && markers[key]) return;
     if (!marker && !markers[key]) return;
@@ -42,16 +34,22 @@ const MapComponent = (refresh) => {
   };
 
   return (
-    !loading && 
-    <APIProvider apiKey={API_KEY}>
-      <Map mapId={MAP_KEY} center={{ lat: 38.73, lng: -9.17 }} zoom={13}>
-        <Markers points={events} setMarkerRef={setMarkerRef} onPinClick={handlePinClick} openPinKey={openPinKey} />
-      </Map>
-    </APIProvider>
+    !loading && (
+      <APIProvider apiKey={API_KEY}>
+        <Map mapId={MAP_KEY} center={{ lat: 38.73, lng: -9.17 }} zoom={13}>
+          <Markers
+            points={events}
+            setMarkerRef={setMarkerRef}
+            onPinClick={handlePinClick}
+            openPinKey={openPinKey}
+          />
+        </Map>
+      </APIProvider>
+    )
   );
 };
 
-const Markers = ({ points, onPinClick, openPinKey }) => {
+const Markers = ({ points }) => {
   const map = useMap();
   const [markers, setMarkers] = useState({});
   const clusterer = useRef(null);
@@ -90,25 +88,23 @@ const Markers = ({ points, onPinClick, openPinKey }) => {
 
   return (
     <>
-      {points.map(point => (
-        // console.log(point)
-        // ||
+      {points.map((point) => (
         <EventPin
-        key={point.id}
-        point={point}
-        position={{
-          lat: parseFloat(point.address.latitude),
-          lng: parseFloat(point.address.longitude)
-        }}
-        setSelectedPoint={setSelectedPoint}
-        onClick={() => {
-          setSelectedPoint(point)
-        }}
-        isSelected={selectedPoint == point}
-        ref={(marker) => setMarkerRef(marker, point.id)}
-      >
-        <Pin background={"purple"} borderColor={"red"} glyphColor={"red"} />
-      </EventPin>
+          key={point.id}
+          point={point}
+          position={{
+            lat: parseFloat(point.address.latitude),
+            lng: parseFloat(point.address.longitude),
+          }}
+          setSelectedPoint={setSelectedPoint}
+          onClick={() => {
+            setSelectedPoint(point);
+          }}
+          isSelected={selectedPoint == point}
+          ref={(marker) => setMarkerRef(marker, point.id)}
+        >
+          <Pin background={"purple"} borderColor={"red"} glyphColor={"red"} />
+        </EventPin>
       ))}
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   Row,
@@ -8,7 +8,6 @@ import {
   Image,
   Typography,
   Form,
-  Select,
   message,
 } from "antd";
 
@@ -16,13 +15,12 @@ import { useNavigate } from "react-router-dom";
 import { register } from "../services/account";
 import { useAsyncFn } from "../hooks/useAsync";
 
-const { Option } = Select;
 const { Title, Text } = Typography;
 
 const Register = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
-  const { loading, execute: registerFn } = useAsyncFn(register);
+  const { execute: registerFn } = useAsyncFn(register);
 
   const onFinish = async (values) => {
     try {

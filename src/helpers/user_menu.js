@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Row, Col, Input, Button, Image, Typography, message } from "antd";
-import useAuth from "../hooks/useAuth";
+import { Typography } from "antd";
 import {
   SettingOutlined,
   CalendarOutlined,
   EnvironmentOutlined,
-  LogoutOutlined,
 } from "@ant-design/icons";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 export const user_items = [
   {

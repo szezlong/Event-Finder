@@ -1,13 +1,16 @@
 import React from "react";
-import { Row, Col, Input, Button, Image, Typography, Divider } from "antd";
+import { Row, Col, Typography, Divider } from "antd";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 export default function FooterContainer() {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <Row justify="center" align="top" style={{ width: 900 }}>
-        <Col span={8} style={{ display: "flex", alignItems: "center", height: "100%" }}>
+        <Col
+          span={8}
+          style={{ display: "flex", alignItems: "center", height: "100%" }}
+        >
           <Text
             style={{
               color: "black",

@@ -10,20 +10,7 @@ import {
   Typography,
 } from "antd";
 import { ReloadOutlined } from "@ant-design/icons";
-import { Loader } from "@googlemaps/js-api-loader";
-//import { GoogleMap, LoadScript, Marker } from "@vis.gl/react-google-maps";
-import {
-  setKey,
-  setDefaults,
-  setLanguage,
-  setRegion,
-  fromAddress,
-  fromLatLng,
-  fromPlaceId,
-  setLocationType,
-  geocode,
-  RequestType,
-} from "react-geocode";
+import { setDefaults, fromAddress } from "react-geocode";
 import { addEvent } from "../services/events";
 import { useAsyncFn } from "../hooks/useAsync";
 import useAuth from "../hooks/useAuth";
@@ -31,12 +18,10 @@ import { useNavigate } from "react-router-dom";
 const { Title, Text } = Typography;
 
 setDefaults({
-  key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY, // Your API key here.
-  language: "en", // Default language for responses.
-  region: "es", // Default region for responses.
+  key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  language: "en",
+  region: "es",
 });
-
-//const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 export default function MapWindow() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -44,14 +29,6 @@ export default function MapWindow() {
   const { auth } = useAuth();
 
   const navigate = useNavigate();
-
-    function isLoggedIn() {
-      if (auth.userId) {
-        return true;
-      } else {
-        return false;
-      }
-    }
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -61,12 +38,11 @@ export default function MapWindow() {
     setIsModalVisible(false);
   };
 
-  const { loading, error, execute: addEventFn } = useAsyncFn(addEvent);
+  const { execute: addEventFn } = useAsyncFn(addEvent);
 
   const onFinish = async (values) => {
     console.log("Received values:", values);
 
-    // Construct the address string
     const address = `${values.street} ${values.number}, ${values.postCode} ${values.city}, ${values.country}`;
     fromAddress(address)
       .then(({ results }) => {
@@ -121,8 +97,6 @@ export default function MapWindow() {
           marginBottom: 5,
           display: "flex",
           fontFamily: "Barlow Condensed, sans-serif",
-          //color: "#fff",
-          //textShadow:"2px 2px 2px #000, -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000",
           fontSize: "30px",
         }}
       >
@@ -155,10 +129,7 @@ export default function MapWindow() {
           <Button
             type="primary"
             onClick={(e) => {
-              auth.userId ?
-              showModal()
-              :
-              navigate('/login')
+              auth.userId ? showModal() : navigate("/login");
             }}
             style={{
               background: "linear-gradient(to right, #1677fe, #5ddfa7)",
@@ -168,16 +139,15 @@ export default function MapWindow() {
           >
             {auth.userId ? "Create New Event!" : "Log in to create your Event!"}
           </Button>
-          <div style={{marginLeft: 10}}>
-          <Button
-            style={{ marginRight: "10px" }}
-            type="primary"
-            icon={<ReloadOutlined />}
-            onClick={() => {
-              setRefresh(!refresh);
-            }}
-          ></Button>
-
+          <div style={{ marginLeft: 10 }}>
+            <Button
+              style={{ marginRight: "10px" }}
+              type="primary"
+              icon={<ReloadOutlined />}
+              onClick={() => {
+                setRefresh(!refresh);
+              }}
+            ></Button>
           </div>
         </div>
       </div>
@@ -194,8 +164,8 @@ export default function MapWindow() {
       >
         <Form
           onFinish={onFinish}
-          labelCol={{ span: 6 }} // Długość etykiety dla większości pól
-          wrapperCol={{ span: 16 }} // Długość pola formularza
+          labelCol={{ span: 6 }}
+          wrapperCol={{ span: 16 }}
         >
           <Form.Item
             label="Name"

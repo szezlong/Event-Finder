@@ -1,15 +1,4 @@
-import {
-  Layout,
-  Row,
-  Col,
-  Card,
-  Typography,
-  Avatar,
-  Flex,
-  Menu,
-  Divider,
-  List,
-} from "antd";
+import { Layout, Card, Typography, Flex, Divider, List } from "antd";
 import { ClockCircleOutlined, EnvironmentOutlined } from "@ant-design/icons";
 
 import UserInfo from "../components/user_info";
@@ -18,7 +7,7 @@ import HeartButton from "../helpers/heart_button";
 import { useUser } from "../contexts/UserContext";
 import formatDateTime from "../helpers/functions/formatDateTime";
 
-const { Header, Content, Sider } = Layout;
+const { Content } = Layout;
 const { Title, Text } = Typography;
 
 const EventsTitle = () => {
@@ -126,10 +115,9 @@ function Events({ user }) {
 }
 
 export function Saved() {
-  const { userId, user } = useUser();
+  const { user } = useUser();
   return (
     <Layout style={{ paddingTop: 20, paddingBottom: 50 }}>
-      {console.log(user)}
       <UserInfo user={user} />
       {user.events ? <Events user={user} /> : <></>}
     </Layout>

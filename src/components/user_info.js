@@ -1,7 +1,5 @@
 import {
   Layout,
-  Row,
-  Col,
   Card,
   Typography,
   Avatar,
@@ -9,7 +7,6 @@ import {
   Menu,
   Divider,
   message,
-  Button,
 } from "antd";
 import { Link } from "react-router-dom";
 import { LogoutOutlined } from "@ant-design/icons";
@@ -17,11 +14,11 @@ import { SmileTwoTone } from "@ant-design/icons";
 import { user_items } from "../helpers/user_menu";
 import useAuth from "../hooks/useAuth";
 
-const { Header, Content, Sider } = Layout;
+const { Sider } = Layout;
 const { Title, Text } = Typography;
 
 export default function UserInfo({ user }) {
-  const { auth, setAuth } = useAuth();
+  const { setAuth } = useAuth();
 
   function onLogout() {
     setAuth({});
@@ -39,7 +36,7 @@ export default function UserInfo({ user }) {
       collapsedWidth="0"
     >
       <Card style={{ marginLeft: 30 }}>
-        <Flex horizontal>
+        <Flex horizontal={"true"}>
           <div
             style={{
               display: "flex",

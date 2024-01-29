@@ -3,29 +3,22 @@ import { useState, useEffect } from "react";
 import useAuth from "../hooks/useAuth";
 
 const PersistLogin = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const { auth, isLoggedIn } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
+  const { auth, isLoggedIn } = useAuth();
 
-    useEffect(() => {
-        let isMounted = true;
+  useEffect(() => {
+    let isMounted = true;
 
-        return () => isMounted = false;
-    }, [])
+    return () => (isMounted = false);
+  }, []);
 
-    useEffect(() => {
-        
-    }, [isLoading])
+  useEffect(() => {}, [isLoading]);
 
-    return (
-        <>
-            {!isLoggedIn
-                ? <Outlet />
-                : isLoading
-                    ? <h1>Loading...</h1>
-                    : <Outlet />
-            }
-        </>
-    )
-}
+  return (
+    <>
+      {!isLoggedIn ? <Outlet /> : isLoading ? <h1>Loading...</h1> : <Outlet />}
+    </>
+  );
+};
 
-export default PersistLogin
+export default PersistLogin;

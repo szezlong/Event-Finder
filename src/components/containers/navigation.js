@@ -1,18 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Menu, Flex, Col, Row, Typography, Button, message } from "antd";
+import { Menu, Col, Row, Typography, Button, message } from "antd";
 import useAuth from "../../hooks/useAuth.js";
 import { items } from "../../helpers/nav_buttons.js";
-import { useAsyncFn } from "../../hooks/useAsync.js";
-import { logout } from "../../services/account.js";
 
 const { Text } = Typography;
 
 export default function Navigation() {
   const [current, setCurrent] = React.useState("home");
   const { auth, setAuth } = useAuth();
-  const { execute: logoutFn } = useAsyncFn(logout);
 
   const onClick = (page) => {
     setCurrent(page.key);
@@ -32,19 +29,6 @@ export default function Navigation() {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     message.success("Logged out successfully");
-    
-    // return logoutFn()
-    //   .then(() => {
-    //     setAuth({});
-    //     localStorage.removeItem("isLoggedIn");
-    //     localStorage.removeItem("token");
-    //     localStorage.removeItem("userId");
-    // message.success("Logged out successfully");
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //     message.error("Login failed. Please try again.");
-    //   });
   }
 
   return (

@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Row, Col, Input, Button, Image, Typography, Flex } from "antd";
+import { Row, Col, Button, Image, Typography } from "antd";
 
 const { Title, Text } = Typography;
 
@@ -192,7 +191,7 @@ const About = () => {
             border: "none",
           }}
         >
-          LET'S GET STARTED !         {/* Link to maps */}
+          LET'S GET STARTED ! {/* Link to maps */}
         </Button>
       </div>
     </div>

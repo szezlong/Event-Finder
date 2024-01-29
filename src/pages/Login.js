@@ -8,7 +8,6 @@ import {
   Image,
   Typography,
   Form,
-  Select,
   message,
 } from "antd";
 
@@ -22,7 +21,7 @@ const { Title, Text } = Typography;
 const Login = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
-  const { loading, execute: loginFn } = useAsyncFn(login);
+  const { execute: loginFn } = useAsyncFn(login);
   const { setAuth } = useAuth();
 
   const onFinish = async (values) => {
@@ -36,7 +35,7 @@ const Login = () => {
             localStorage.setItem("token", token);
             localStorage.setItem("userId", userId);
 
-            setAuth({userId, token});
+            setAuth({ userId, token });
             console.log(localStorage);
             navigate("/");
           }

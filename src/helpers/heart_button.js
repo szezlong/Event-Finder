@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Button } from 'antd';
-import { HeartOutlined, HeartFilled } from '@ant-design/icons';
+import React, { useState } from "react";
+import { Button } from "antd";
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
 const HeartButton = () => {
   const [filled, setFilled] = useState(true);
@@ -15,9 +15,9 @@ const HeartButton = () => {
       icon={filled ? <HeartFilled /> : <HeartOutlined />}
       onClick={handleClick}
       style={{
-        color: filled ? '#ff4d4f' : '#ff4d4f',
-        border: 'none',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        color: filled ? "#ff4d4f" : "#ff4d4f",
+        border: "none",
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
       }}
     />
   );

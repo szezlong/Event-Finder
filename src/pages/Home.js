@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Typography } from "antd";
 import SearchBar from "../components/search_bar";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 const images = [
   "https://images.pexels.com/photos/3394225/pexels-photo-3394225.jpeg",

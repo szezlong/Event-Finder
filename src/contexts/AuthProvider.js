@@ -11,9 +11,6 @@ export const AuthProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("isLoggedIn")) || false
   );
 
-  console.log({ auth });
-  console.log({ children });
-
   return (
     <AuthContext.Provider value={{ auth, setAuth, isLoggedIn, setIsLoggedIn }}>
       {children}

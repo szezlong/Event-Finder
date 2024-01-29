@@ -9,10 +9,38 @@ import { message } from "antd";
 import { attendEvent } from "../../services/events";
 import useAuth from "../../hooks/useAuth";
 
+const padZeroIfNeeded = (eventDate) => {
+  if (eventDate.length === 5) {
+    eventDate.push(0);
+  }
+  return eventDate.map((value, index) => (index === 1 ? value - 1 : value));
+};
+
+const calculateEventColor = (eventDate) => {
+  const paddedEventDate = padZeroIfNeeded(eventDate);
+  const currentDate = new Date();
+  const eventDateTime = new Date(...paddedEventDate);
+  const timeDifference = eventDateTime - currentDate;
+  const timeDifferenceInDays = timeDifference / (1000 * 60 * 60 * 24);
+
+  if (timeDifferenceInDays < 0) {
+    return { background: "hsl(0, 0%, 75%)" };
+  } else if (timeDifferenceInDays <= 3) {
+    return { background: "red" };
+  } else if (timeDifferenceInDays <= 7) {
+    return { background: "orange" };
+  } else if (timeDifferenceInDays <= 30) {
+    return { background: "yellow" };
+  } else {
+    return { background: "hsl(120, 73%, 75%)" };
+  }
+};
+
 const EventPin = React.forwardRef(
-  ({ point, position, onClick, setSelectedPoint, isSelected }, ref) => {
+  ({ point, onClick, setSelectedPoint, isSelected }, ref) => {
     const [attending, setAttending] = useState(false);
-    const { auth, setAuth } = useAuth();
+    const { auth } = useAuth();
+    const { background } = calculateEventColor(point.date);
 
     function isLoggedIn() {
       if (auth.userId) {
@@ -57,7 +85,11 @@ const EventPin = React.forwardRef(
           }}
           onClick={onClick}
         >
-          <Pin background={"purple"} borderColor={"red"} glyphColor={"red"} />
+          <Pin
+            background={background}
+            borderColor={"grey"}
+            glyphColor={"black"}
+          />
         </AdvancedMarker>
         {isSelected && (
           <InfoWindow
