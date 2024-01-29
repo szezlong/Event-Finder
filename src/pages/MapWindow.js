@@ -26,6 +26,8 @@ import {
 } from "react-geocode";
 import { addEvent } from "../services/events";
 import { useAsyncFn } from "../hooks/useAsync";
+import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 const { Title, Text } = Typography;
 
 setDefaults({
@@ -38,6 +40,18 @@ setDefaults({
 
 export default function MapWindow() {
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const { auth } = useAuth();
+
+  const navigate = useNavigate();
+
+    function isLoggedIn() {
+      if (auth.userId) {
+        return true;
+      } else {
+        return false;
+      }
+    }
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -140,14 +154,19 @@ export default function MapWindow() {
           </div>
           <Button
             type="primary"
-            onClick={showModal}
+            onClick={(e) => {
+              auth.userId ?
+              showModal()
+              :
+              navigate('/login')
+            }}
             style={{
               background: "linear-gradient(to right, #1677fe, #5ddfa7)",
               border: "none",
               width: 200,
             }}
           >
-            Create New Event!
+            {auth.userId ? "Create New Event!" : "Log in to create your Event!"}
           </Button>
           <div style={{marginLeft: 10}}>
           <Button

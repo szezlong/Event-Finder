@@ -7,7 +7,7 @@ import MapWindow from "./pages/MapWindow";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
-import Saved from "./pages/Saved";
+import { Saved } from "./pages/Saved";
 import { UserProvider } from "./contexts/UserContext";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
               <Saved />
             </UserProvider>
           }
-        ></Route>
+        />
       </Route>
     </Routes>
   );

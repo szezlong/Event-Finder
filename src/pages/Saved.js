@@ -21,6 +21,7 @@ const { Header, Content, Sider } = Layout;
 const { Title, Text } = Typography;
 
 const EventsTitle = () => {
+  console.log("EventsTitle")
   return (
     <Flex vertical style={{ marginBottom: 30 }}>
       <Title level={3} style={{ textAlign: "left", marginBottom: 0 }}>
@@ -34,6 +35,7 @@ const EventsTitle = () => {
 };
 
 const EventCard = ({ name, date, address, description }) => {
+  console.log("EventCard")
   return (
     <Card bordered={false} style={{ display: "flex", flexDirection: "column"}}>
       <div
@@ -113,6 +115,7 @@ const MockupData = [
 ];
 
 const Events = () => {
+  console.log("Events")
   const {
     //userId,
     user,
@@ -151,13 +154,15 @@ const Events = () => {
   );
 };
 
-const Saved = () => {
+export function Saved() {
+  console.log("Saved")
+  const { userId, user } = useUser();
   return (
     <Layout style={{ paddingTop: 20, paddingBottom: 50 }}>
-      <UserInfo />
-      <Events />
+      {console.log(user)}
+      {/* <UserInfo /> */}
+      {/* <Events /> */}
+      <h1>DUPA</h1>
     </Layout>
   );
 };
-
-export default Saved;
